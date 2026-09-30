@@ -1,0 +1,16 @@
+{
+  "name": "turingtest-v2",
+  "version": "2.0.0",
+  "description": "Turingtest för klassrummet (svenskt gränssnitt). Inga npm-beroenden.",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "mock": "node server.js --mock",
+    "test": "node test/smoke.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turingtestet – människa eller AI?</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script src="common.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="top">
+    <h1>Turingtestet</h1>
+    <p class="privacy" role="note"><strong>Skriv inga personuppgifter</strong> (namn, adress, telefonnummer). Det du skriver kan skickas till en AI-tjänst.</p>
+  </header>
+
+  <div id="banner-wake" class="banner warn" hidden role="status">Servern vaknar, vänta ~30 s …</div>
+  <div id="banner-conn" class="banner warn" hidden role="status">Tappade anslutningen – försöker igen …</div>
+  <div id="banner-mock" class="banner info" hidden role="status">Testläge: AI-svaren är påhittade (ingen riktig AI).</div>
+
+  <main>
+    <!-- Startvy -->
+    <section id="view-start">
+      <p class="lead">Två svarar på dina frågor: en klasskamrat och en AI. Kan du avgöra vem som är vem?</p>
+      <p id="start-error" class="error" hidden role="alert"></p>
+
+      <div class="card">
+        <h2>Frågare</h2>
+        <p>Du ställer frågor, läser två svar (A och B) och gissar vem som är AI.</p>
+        <label for="class-code">Klasskod från läraren</label>
+        <input id="class-code" class="code-input" autocomplete="off" autocapitalize="characters" maxlength="8" placeholder="t.ex. K7PQ2">
+        <button id="btn-create" class="big primary">Skapa rum</button>
+      </div>
+
+      <div class="card">
+        <h2>Svarare</h2>
+        <p>Du svarar som dig själv. Frågaren ska försöka lista ut vem av er som är AI.</p>
+        <label for="room-code">Rumskod från frågaren</label>
+        <input id="room-code" class="code-input" autocomplete="off" autocapitalize="characters" maxlength="8" placeholder="t.ex. 4KXP">
+        <button id="btn-join" class="big primary">Gå med</button>
+      </div>
+    </section>
+
+    <!-- Rumsvy -->
+    <section id="view-room" hidden>
+      <div id="room-status" class="status"></div>
+      <div id="room-info" class="info-box"></div>
+      <p id="notice" class="notice" hidden role="status"></p>
+
+      <ol id="chat" class="chat"></ol>
+
+      <form id="ask-form" class="compose" hidden>
+        <label for="ask-text">Din fråga (går till både A och B)</label>
+        <textarea id="ask-text" rows="3"></textarea>
+        <div class="row">
+          <span id="ask-count" class="count"></span>
+          <button type="submit" class="big primary">Skicka fråga</button>
+        </div>
+        <button type="button" id="btn-finish" class="big secondary">Jag är klar – gå till gissningen</button>
+      </form>
+
+      <form id="answer-form" class="compose" hidden>
+        <label for="answer-text">Ditt svar</label>
+        <textarea id="answer-text" rows="3"></textarea>
+        <div class="row">
+          <span id="answer-count" class="count"></span>
+          <button type="submit" class="big primary">Skicka svar</button>
+        </div>
+      </form>
+
+      <form id="guess-form" class="compose" hidden>
+        <h2>Vem är AI:n?</h2>
+        <div class="choice-row">
+          <button type="button" class="big choice" data-choice="A">A är AI:n</button>
+          <button type="button" class="big choice" data-choice="B">B är AI:n</button>
+        </div>
+        <label for="motivation">Motivera kort: vad fick dig att tro det?</label>
+        <textarea id="motivation" rows="3"></textarea>
+        <div class="row">
+          <span id="motivation-count" class="count"></span>
+          <button type="submit" class="big primary">Lämna gissning</button>
+        </div>
+        <p class="hint">Resultatet visas först när du har gissat och motiverat. Motiveringen visas anonymt för läraren.</p>
+      </form>
+
+      <div id="reveal" hidden></div>
+
+      <p class="leave"><button id="btn-leave" class="link-button">Lämna rummet</button></p>
+    </section>
+  </main>
+
+  <footer><a href="larare.html">Lärarvy</a></footer>
+</body>
+</html>

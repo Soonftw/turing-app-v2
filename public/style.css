@@ -1,0 +1,99 @@
+/* Turingtestet v2 – gemensam stil för elev- och lärarsida. Ingen extern font eller bibliotek. */
+:root {
+  --bg: #f6f7fb;
+  --fg: #1c2230;
+  --muted: #5b6475;
+  --card: #ffffff;
+  --line: #d5d9e4;
+  --primary: #2f5fd0;
+  --primary-fg: #ffffff;
+  --ok: #1c7c45;
+  --miss: #b3261e;
+  --warn-bg: #fff4d6;
+  --info-bg: #e6efff;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--fg);
+  background: var(--bg);
+}
+header.top, main, footer, .banner { max-width: 46rem; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+header.top { padding-top: 1rem; }
+h1 { margin: 0 0 .25rem; font-size: 1.7rem; }
+h2 { font-size: 1.25rem; margin: .2rem 0 .5rem; }
+h3 { font-size: 1.05rem; margin: 1.2rem 0 .4rem; }
+.privacy { margin: 0 0 .75rem; padding: .5rem .75rem; background: var(--warn-bg); border-radius: .4rem; font-size: .95rem; }
+.banner { padding-top: .5rem; padding-bottom: .5rem; margin-bottom: .5rem; border-radius: .4rem; }
+.banner.warn { background: var(--warn-bg); }
+.banner.info { background: var(--info-bg); }
+.lead { font-size: 1.15rem; }
+.error { color: var(--miss); font-weight: 600; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: .6rem; padding: 1rem; margin: 1rem 0; }
+label { display: block; font-weight: 600; margin: .5rem 0 .25rem; }
+input, textarea, select {
+  width: 100%; font: inherit; padding: .55rem .65rem; border: 1px solid var(--line); border-radius: .4rem; background: #fff; color: var(--fg);
+}
+input:focus, textarea:focus, select:focus, button:focus-visible, a:focus-visible { outline: 3px solid #86a8ff; outline-offset: 1px; }
+textarea { resize: vertical; }
+.code-input { text-transform: uppercase; letter-spacing: .2em; font-size: 1.3rem; max-width: 14rem; }
+button { font: inherit; cursor: pointer; border-radius: .4rem; border: 1px solid var(--line); background: #fff; color: var(--fg); padding: .5rem .9rem; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+button.big { padding: .7rem 1.1rem; font-size: 1.05rem; margin-top: .6rem; }
+button.primary { background: var(--primary); border-color: var(--primary); color: var(--primary-fg); }
+button.secondary { background: #fff; border-color: var(--primary); color: var(--primary); }
+button.link-button { border: 0; background: none; color: var(--primary); text-decoration: underline; padding: .2rem; }
+.status { font-weight: 600; margin: .5rem 0; color: var(--muted); }
+.info-box { background: var(--info-bg); border-radius: .5rem; padding: .5rem .9rem; margin: .5rem 0; }
+.info-box p { margin: .3rem 0; }
+.big-code { font-size: 2.4rem; font-weight: 700; letter-spacing: .3em; margin: .2rem 0; }
+.notice { background: var(--warn-bg); border-radius: .4rem; padding: .5rem .75rem; }
+.chat { list-style: none; padding: 0; margin: 1rem 0; }
+.turn { background: var(--card); border: 1px solid var(--line); border-radius: .6rem; padding: .7rem .9rem; margin-bottom: .7rem; }
+.question { font-weight: 600; margin: 0 0 .5rem; }
+.wait { color: var(--muted); font-style: italic; margin: 0; }
+.mine { margin: 0; }
+.answers { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.answer { border: 1px solid var(--line); border-radius: .5rem; padding: .5rem .7rem; background: #fafbff; }
+.answer p { margin: .2rem 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.answer .label { font-weight: 700; color: var(--primary); font-size: .9rem; }
+.answer.ai { border-color: var(--primary); }
+.answer.human { border-color: var(--ok); }
+.compose { background: var(--card); border: 1px solid var(--line); border-radius: .6rem; padding: .8rem; margin: 1rem 0; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
+.count, .hint { color: var(--muted); font-size: .9rem; }
+.choice-row { display: flex; gap: .6rem; }
+.choice-row .choice { flex: 1; }
+button.choice.selected { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.result { margin: .3rem 0; }
+.result.ok { color: var(--ok); }
+.result.miss { color: var(--miss); }
+.explain { background: var(--info-bg); padding: .5rem .75rem; border-radius: .4rem; }
+.motivation { font-style: italic; }
+.leave { text-align: center; }
+footer { padding-top: 1rem; padding-bottom: 2rem; color: var(--muted); font-size: .9rem; }
+
+/* Lärarsidan */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.class-code { font-size: 3rem; font-weight: 800; letter-spacing: .25em; margin: 0; }
+.stat-table { width: 100%; border-collapse: collapse; margin: .5rem 0; }
+.stat-table th, .stat-table td { text-align: left; padding: .45rem .5rem; border-bottom: 1px solid var(--line); }
+.stat-table td.num, .stat-table th.num { text-align: right; }
+.bar { background: #e5e8f1; border-radius: .3rem; height: .8rem; overflow: hidden; min-width: 6rem; }
+.bar > span { display: block; height: 100%; background: var(--primary); }
+.mot-list { list-style: none; padding: 0; margin: .5rem 0; }
+.mot-list li { border: 1px solid var(--line); border-radius: .4rem; padding: .4rem .6rem; margin-bottom: .4rem; background: #fff; }
+.mot-list .tag { font-size: .85rem; color: var(--muted); }
+.mot-list li.hid { opacity: .6; }
+.inline { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+.inline label { margin: 0; }
+.inline input[type=number] { width: 6rem; }
+.saved { color: var(--ok); font-size: .9rem; }
+
+@media (max-width: 34rem) {
+  .answers, .grid2 { grid-template-columns: 1fr; }
+}
