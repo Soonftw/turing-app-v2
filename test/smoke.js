@@ -202,7 +202,12 @@ async function main() {
 
   // ---- efterbearbetning av gymnasieelev-svar ----
   assert.equal(ai.humanize('Jag spelar mest fotboll. Vad gör du själv?'), 'jag spelar mest fotboll');
-  assert.equal(ai.humanize('Det beror på — typ vädret.'), 'det beror på, typ vädret');
+  assert.equal(ai.humanize('Det beror på — typ vädret.'), 'det beror på typ vädret');
+  assert.equal(ai.humanize('typ mjukglass är bäst, haha'), 'typ mjukglass är bäst');
+  assert.equal(ai.humanize('orkar inte fundera på det, lol'), 'orkar inte fundera på det');
+  assert.equal(ai.humanize('vet inte, nått snabbt typ macka'), 'vet inte nått snabbt typ macka');
+  assert.equal(ai.humanize('Asså, nej haha.'), 'nej');
+  assert.equal(ai.humanize('haha'), 'haha', 'svar som bara är utfyllnad får stå kvar');
   assert.equal(ai.humanize('AI är läskigt.'), 'AI är läskigt');
   assert.equal(ai.humanize('Vad menar du?'), 'vad menar du?', 'en ensam fråga får stå kvar');
   assert.equal(ai.humanize('vet inte...'), 'vet inte...');
