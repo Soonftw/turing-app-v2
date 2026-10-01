@@ -200,6 +200,15 @@ async function main() {
   assert.match(sent.messages[0].content, /gymnasieelev/);
   ok('språkmodellläget anropar (attrapp) chat/completions med modell från AI_MODEL och persona-prompt');
 
+  // ---- efterbearbetning av gymnasieelev-svar ----
+  assert.equal(ai.humanize('Jag spelar mest fotboll. Vad gör du själv?'), 'jag spelar mest fotboll');
+  assert.equal(ai.humanize('Det beror på — typ vädret.'), 'det beror på, typ vädret');
+  assert.equal(ai.humanize('AI är läskigt.'), 'AI är läskigt');
+  assert.equal(ai.humanize('Vad menar du?'), 'vad menar du?', 'en ensam fråga får stå kvar');
+  assert.equal(ai.humanize('vet inte...'), 'vet inte...');
+  assert.equal(ai.humanize('"Kanske."'), 'kanske');
+  ok('gymnasieelev-svar efterbearbetas (liten bokstav, ingen slutpunkt, ingen avslutande motfråga)');
+
   // ---- v1-kompatibilitet ----
   for (const k of ['AI_MODE', 'OPENAI_API_KEY', 'AI_PROVIDER', 'AI_MODEL', 'OPENAI_MODEL']) delete process.env[k];
   process.env.AI_PROVIDER = 'openai';
